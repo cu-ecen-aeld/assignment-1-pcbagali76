@@ -14,9 +14,17 @@
 */
 void test_validate_my_username()
 {
-    /**
-     * TODO: Replace the line below with your code here as described above to verify your /conf/username.txt 
-     * config file and my_username() functions are setup properly
-     */
-    TEST_ASSERT_TRUE_MESSAGE(false,"AESD students, please fix me!");
+    // Call the my_username() function to get the hardcoded username
+    const char* hardcoded_username = my_username();
+    
+    // Call malloc_username_from_conf_file() to get the username from the configuration file
+    char* conf_file_username = malloc_username_from_conf_file();
+
+    // Use Unity assertion to check if the usernames match
+    TEST_ASSERT_EQUAL_STRING_MESSAGE(hardcoded_username, conf_file_username, 
+                                     "The hardcoded username and the username from the configuration file do not match!");
+
+    // Free the allocated memory for conf_file_username
+    free(conf_file_username);
 }
+
